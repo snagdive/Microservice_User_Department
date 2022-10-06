@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,7 +25,8 @@ public class UserService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	private String url = "http://Department-Service/departments/"; 
+	@Value("${department.api.path}")
+	private String url; 
 	
 	public User addUser(User user) {
 		return repo.insert(user);
